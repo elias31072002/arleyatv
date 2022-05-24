@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView, FlatList, ActivityIndicator, Alert} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { FAB } from 'react-native-paper';
 import styles from './styles';
 import { useAuth, useBackHandler } from "../../hooks";
+import {PetContext} from '../../contexts';
 
 export default function Pet(props){
   const [selected,setSelected] = useState('');
   const [register,setRegister] = useState(false);
   const [loading, setLoading] = useState(false);
+  const {pet, setPet} = useContext(PetContext);
   // o hook useAuth substitui o uso do AuthContext
   const { signOut, token, petList, petCreate, petRemove } = useAuth();
   const [list, setList] = useState([]);
@@ -20,8 +22,10 @@ export default function Pet(props){
       const response = await petList();
       if( response.pets ){
         setList(response.pets);
-        if( response.pets.length > 0 )
-          setSelected(response.pets[0].idpet)
+        if( response.pets.length > 0 ){
+          setSelected(response.pets[0].idpet);
+          setPet(response.pets[0]);
+        }
       }
       setLoading(false);
     }
@@ -55,6 +59,7 @@ export default function Pet(props){
         const aux = [...list, response];
         setList(aux);
         setSelected(response.idpet);
+        setPet(response);
         setRegister(false);
       }
       else
@@ -81,14 +86,18 @@ export default function Pet(props){
                 if( aux[i].idpet == idpet ){
                   aux.splice(i,1);
                   setList(aux);
-                  if( idpet == selected && aux.length > 0 )  
-                    setSelected(aux[0].idpet)
+                  if( idpet == selected && aux.length > 0 ){  
+                    setSelected(aux[0].idpet);
+                    setPet(aux[0]);
+                  }
+                  else if( idpet == selected && aux.length == 0 )
+                    setPet({});
                   break;
                 }
               }
             }
             else
-              Alert.alert(response.error || "Problemas para cadastrar o pet");
+              Alert.alert(response.error || "Problemas para excluir o pet");
             setLoading(false);
           },
         },
@@ -100,7 +109,7 @@ export default function Pet(props){
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <TouchableOpacity style={styles.itemtext} onPress={()=> setSelected(item.idpet)}>
+      <TouchableOpacity style={styles.itemtext} onPress={()=> {setSelected(item.idpet); setPet(item)}}>
         <Text style={[styles.itemname,selected == item.idpet &&{fontWeight:'bold'}]}>{item.name}</Text>
         { selected == item.idpet &&
           <Entypo name="check" color="#555" size={25} style={styles.itemcheck} />
@@ -114,10 +123,10 @@ export default function Pet(props){
 
   return (
     loading ? 
-    <Loading />
+      <Loading />
     :
     register ?
-    <Register lista={list} setLista={setList} setRegister={setRegister} add={add} />
+      <Register lista={list} setLista={setList} setRegister={setRegister} add={add} />
     :
     <View style={styles.container}>
       {

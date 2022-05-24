@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -8,10 +8,15 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 const {Navigator, Screen} = createMaterialTopTabNavigator();
 
 import {Pet, Payment, Medicine} from '../index';
+
+import {PetContext} from '../../contexts';
+
 import styles from './styles';
 
 export default function Dashboard(props) {
+  const [pet,setPet] = useState({});
   return (
+    <PetContext.Provider value={{pet,setPet}}>
       <Navigator
         initialRouteName="Pet"
         screenOptions={{
@@ -54,5 +59,6 @@ export default function Dashboard(props) {
           }}
         />
       </Navigator>
+    </PetContext.Provider>
   );
 }

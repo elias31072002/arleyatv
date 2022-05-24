@@ -42,7 +42,7 @@ async function petCreate(name) {
 
 async function petRemove(idpet) {
   try{
-    const {data} = await api.delete("/pet/remove", { data: {idpet:idpet} });
+    const {data} = await api.delete("/pet/remove", { data: {idpet} });
     return data;
   }
   catch(e){
@@ -50,9 +50,29 @@ async function petRemove(idpet) {
   }
 }
 
-async function paymentCreate(idpet, description, name) {
+async function paymentCreate(idpet, description, value) {
   try{
-    const {data} = await api.post("/payment/create", { idpet, description, name });
+    const {data} = await api.post("/payment/create", { idpet, description, value });
+    return data;
+  }
+  catch(e){
+    return {error: e.message};
+  }
+}
+
+async function paymentList(idpet) {
+  try{
+    const {data} = await api.post("/payment/list", {idpet});
+    return data;
+  }
+  catch(e){
+    return {error: e.message};
+  }
+}
+
+async function paymentRemove(idpayment) {
+  try{
+    const {data} = await api.delete("/payment/remove", { data: {idpayment} });
     return data;
   }
   catch(e){
@@ -66,5 +86,7 @@ export {
   petList,
   petCreate,
   petRemove,
-  paymentCreate
+  paymentCreate,
+  paymentList,
+  paymentRemove
 };

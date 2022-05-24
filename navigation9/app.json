@@ -1,10 +1,11 @@
 {
   "expo": {
     "name": "navigation9",
-    "slug": "snack-91bee57c-aa35-483c-bfa1-729b840c6ee5",
+    "slug": "snack-978b154a-2560-4cdf-9efd-30f75ab833dc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

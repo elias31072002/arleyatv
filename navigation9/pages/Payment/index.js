@@ -1,38 +1,39 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView, FlatList, Alert} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {View, Text, TextInput, TouchableOpacity, ScrollView, FlatList, Alert, ActivityIndicator} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { FAB } from 'react-native-paper';
 import { useAuth } from "../../hooks";
+import {PetContext} from '../../contexts';
 import styles from './styles';
 
 export default function Payment(props){
   const [register,setRegister] = useState(false);
   const [loading, setLoading] = useState(false);
+  const {pet, setPet} = useContext(PetContext);
   // o hook useAuth substitui o uso do AuthContext
-  const { paymentCreate } = useAuth();
-  const [list, setList] = useState([
-    {idpayment:'1',description:'Banho',value:35.90,date:'03/02/2022'},
-    {idpayment:'2',description:'Tosa',value:54.25,date:'08/02/2022'},
-    {idpayment:'3',description:'Medicamento',value:123.84,date:'08/02/2022'},
-    {idpayment:'4',description:'Ração 2kg',value:41.89,date:'19/03/2022'},
-    {idpayment:'5',description:'Banho',value:35.90,date:'03/02/2022'},
-    {idpayment:'6',description:'Tosa',value:54.25,date:'08/02/2022'},
-    {idpayment:'7',description:'Medicamento',value:123.84,date:'08/02/2022'},
-    {idpayment:'8',description:'Ração 2kg',value:41.89,date:'19/03/2022'},
-    {idpayment:'9',description:'Banho',value:35.90,date:'03/02/2022'},
-    {idpayment:'10',description:'Tosa',value:54.25,date:'08/02/2022'},
-    {idpayment:'11',description:'Medicamento',value:123.84,date:'08/02/2022'},
-    {idpayment:'12',description:'Ração 2kg',value:41.89,date:'19/03/2022'},
-  ]);
+  const { paymentCreate, paymentList, paymentRemove } = useAuth();
+  const [list, setList] = useState([]);
+
+  useEffect(()=>{
+    async function list(){
+      if( pet.idpet ){
+        setLoading(true);
+        const response = await paymentList(pet.idpet);
+        if( response.payments )
+          setList(response.payments);
+        setLoading(false);
+      }
+    }
+    list();
+  },[pet]);
 
   const add = async (description,value) => {
     description = description.trim();
     value = value.trim();
     if( description && value ){
       setLoading(true);
-      const response = await paymentCreate("95e313e2-e6bd-49bc-902a-2a7e061ee859",description,value);
-      console.log("add", JSON.stringify(response));
+      const response = await paymentCreate(pet.idpet,description,value);
       if( response.idpayment ){
         const aux = [...list, response];
         setList(aux);
@@ -43,39 +44,68 @@ export default function Payment(props){
       setLoading(false);
     }
     else
-      Alert.alert("Forneça o nome do pet");
+      Alert.alert("Forneça a descrição e valor do gasto");
   };
 
-  const remove = (id) => {
-    const aux = [...list];
-    for(let i = 0; i < aux.length; i++){
-      if( aux[i].idpayment == id ){
-        aux.splice(i,1);
-        setList(aux);
-        break;
-      }
-    }
-  }
+const remove = async (idpayment,description) => {
+    Alert.alert(
+      null,
+      `Excluir definitivamente o pagamento ${description}?`,
+      [
+        {
+          text: "Sim",
+          onPress: async () => {
+            setLoading(true);
+            const response = await paymentRemove(idpayment);
+            if( response.idpayment ){
+              const aux = [...list];
+              for(let i = 0; i < aux.length; i++){
+                if( aux[i].idpayment == idpayment ){
+                  aux.splice(i,1);
+                  setList(aux);
+                  break;
+                }
+              }
+            }
+            else
+              Alert.alert(response.error || "Problemas para excluir o pagamento");
+            setLoading(false);
+          },
+        },
+        {
+          text: "Não",
+        }
+      ]);
+  };
 
-  const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <View style={styles.itemtext}>
-        <Text style={styles.itemname}>{item.description}</Text>
-        <Text style={styles.itemname}>R${item.value} - {item.date}</Text>
+  const renderItem = ({ item }) => {
+    let date = item.date.split("-");
+    date = `${date[2]}/${date[1]}/${date[0]}`;
+    return (
+      <View style={styles.item}>
+        <View style={styles.itemtext}>
+          <Text style={styles.itemname}>{item.description}</Text>
+          <Text style={styles.itemname}>R${item.value} - {date}</Text>
+        </View>
+        <TouchableOpacity style={styles.remove} onPress={()=>remove(item.idpayment,item.description)}>
+          <MaterialCommunityIcons name='delete' color="#555" size={25} />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.remove} onPress={()=>remove(item.idpayment)}>
-        <MaterialCommunityIcons name='delete' color="#555" size={25} />
-      </TouchableOpacity>
-    </View>
-  );
+    );
+  };
 
   return (
-    register ?
-    <Register lista={list} setLista={setList} setRegister={setRegister} add={add} />
+    loading ? 
+      <Loading />
     :
+    register ?
+      <Register lista={list} setLista={setList} setRegister={setRegister} add={add} />
+    : 
+    pet?.name ?
+    (
     <View style={styles.container}>
       <View style={styles.titlebox}>
-        <Text style={styles.titletext}>Soneca</Text>
+        <Text style={styles.titletext}>{pet?.name}</Text>
       </View>
       {
         list.length > 0 ?
@@ -87,7 +117,7 @@ export default function Payment(props){
           />
         </ScrollView>
         :
-        <Empty />
+        <Empty message="Clique no botão para cadastrar um pagamento" />
       }
       <FAB
         style={styles.add}
@@ -97,14 +127,19 @@ export default function Payment(props){
         onPress={() => setRegister(true)}
       />
     </View>
+    )
+    :
+    <View style={styles.container}>
+      <Empty message="Cadastre um pet na aba Pet" />
+    </View>
   );
 }
 
-function Empty(){
+function Empty(props){
   return (
     <View style={styles.msg}>
       <Text style={styles.msgtext}>
-        Clique no botão para cadastrar um pagamento
+        {props.message}
       </Text>
     </View>
   );
@@ -148,5 +183,11 @@ function Register(props){
     </View>
   );
 }
+
+const Loading = () => (
+  <View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: '#FFC125'}}>
+    <ActivityIndicator size="large" color="#666" />
+  </View>
+);
 
 

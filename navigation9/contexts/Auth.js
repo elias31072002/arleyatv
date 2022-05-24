@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
   }
 
   async function petList() {
-   return await auth.petList();
+    return await auth.petList();
   }
 
   async function petCreate(name) {
@@ -75,15 +75,23 @@ const AuthProvider = ({ children }) => {
   }
 
   async function petRemove(idpet) {
-   return await auth.petRemove(idpet);
+    return await auth.petRemove(idpet);
   }
 
-  async function paymentCreate(dpet, description, name) {
-   return await auth.paymentCreate(dpet, description, name);
+  async function paymentCreate(idpet, description, value) {
+    return await auth.paymentCreate(idpet, description, value);
+  }
+
+  async function paymentList(idpet) {
+    return await auth.paymentList(idpet);
+  }
+
+  async function paymentRemove(idpayment) {
+    return await auth.paymentRemove(idpayment);
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, token, mail, loading, userCreate, petList, petCreate, petRemove, paymentCreate }}>
+    <AuthContext.Provider value={{ signIn, signOut, token, mail, loading, userCreate, petList, petCreate, petRemove, paymentCreate, paymentList, paymentRemove }}>
       {children}
     </AuthContext.Provider>
   );
