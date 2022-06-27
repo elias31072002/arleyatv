@@ -25,6 +25,7 @@ Responsável por retornar as propriedades do "value" do AuthContext.Provider
 
 Responsável por detectar o toque do usuário do aplicativo no botão voltar da aplicação
 
+-------------------------------------------------------------------------------------------------------------
 
 ### Contexts
 
