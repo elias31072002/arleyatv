@@ -7,16 +7,22 @@
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/hooks.PNG">
 
 ### index
+
+
 ---------------------------------------------------------------------
 Responsável por hospedar e exportar os outros arquivos da pasta Hooks
 ---------------------------------------------------------------------
 
 ### useAuth
+
+
 ---------------------------------------------------------------------------
 Responsável por retornar as propriedades do "value" do AuthContext.Provider
 ---------------------------------------------------------------------------
 
 ### useBackHandler
+
+
 --------------------------------------------------------------------------------------
 Responsável por detectar o toque do usuário do aplicativo no botão voltar da aplicação
 --------------------------------------------------------------------------------------
