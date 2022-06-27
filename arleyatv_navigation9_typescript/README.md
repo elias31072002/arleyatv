@@ -24,58 +24,52 @@ Responsável por detectar o toque do usuário do aplicativo no botão voltar da 
 
 ### Contexts
 
-<img src="https://user-images.githubusercontent.com/50894850/175794439-f356ea36-dd7c-4c9b-837b-0716e5d05959.png">
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/context.PNG">
 
-Auth.tsx - arquivo que contém as propriedades e funções de Login, Criação de Usuário e LogOut do app
+### Auth
 
-index.tsx - arquivo que hospeda e exporta os outros arquivos da pasta Contexts, para facilitar a importação 
+Responsável por conter as propriedades e funções da tela de Login, tela de Criação do Uusário e a função de LogOut do aplicativo
 
-Medicine.tsx - passa as funções da página de medicamentos - Criação de um medicamento/Listagem dos Medicamentos/Remoção de um Medicamento
+### index
 
-Payments.tsx - passa as funções da página de pagamentos - Criação do Pagamento/Listagem do Pagamento/Remoção do Pagamento
+Responsável por hospedar e exportar os outros arquivos da pasta Contexts
 
-Pet.tsx - passa as funções da página de pets - Criação de um novo pet/Listagem dos pets cadastrados/Exclusão de um Pet
+### Medicine
 
-### Fluxo do App
+Contém os códigos funcionais das funções da página de listagem de medicamentos
 
-1- Tela Home com os botões que levam para as telas de Login e Cadastro
+### Payments
 
-2- Tela de Cadastro de Usuário
+Contém os códigos funcionais das funções da página de listagem de pagamentos
 
-3- Tela de Login
+### Pet
 
-<img src="https://user-images.githubusercontent.com/50894850/175793713-45280c72-c184-4478-b1e2-37479f91767a.png">
+Contém os códigos funcionais das funções da página de listagem de pets
 
-Tela de Cadastro de um novo pet e listagem dos mesmos
+### Funcionalidades do Aplicativo
 
-<img src="https://user-images.githubusercontent.com/50894850/175793853-e0f62633-d42d-4caf-bf90-7e23a6732164.png">
+### Tela Inicial
 
-Tela de Cadastro de um novo gasto para o pet selecionado
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telainicial.PNG">
 
-<img src="https://user-images.githubusercontent.com/50894850/175793919-905e8477-53e8-4219-b8a0-8811cda9fea9.png">
+### Tela Cadastro
 
-Tela de Cadastro de um novo medicamento para o pet selecionado
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telacadastro.PNG">
 
-<img src="https://user-images.githubusercontent.com/50894850/175794014-c1897205-0f07-4cdb-9b63-7338f8505d31.png">
+### Tela Login
 
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telalogin.PNG">
 
-### Run
+### Tela de Listagem de Pets
 
-#expo-cli global instalado - $ npm i -g expo-cli
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telalistagempets.PNG">
 
-$ git clone https://github.com/GusttavoLopes/ps-projeto-pet.git
+### Tela de Listagem de Gastos
 
-$ cd pet
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telagastos.PNG">
 
-$ yarn install
+### Tela de Listagem de Medicamentos
 
-$ expo install ou npm install
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telademedicacoes.PNG">
 
-$ npm start (yarn web ou npm run web)
-
-porta:19006 - http://localhost:19006/
-
-&#xa0;
-
-<a href="#top">Back to top</a>
 
