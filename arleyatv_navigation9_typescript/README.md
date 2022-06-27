@@ -10,17 +10,17 @@
 ---------------------------------------------------------------------
 Responsável por hospedar e exportar os outros arquivos da pasta Hooks
 ---------------------------------------------------------------------
-<br>
+
 ### useAuth
 ---------------------------------------------------------------------------
 Responsável por retornar as propriedades do "value" do AuthContext.Provider
 ---------------------------------------------------------------------------
-<br>
+
 ### useBackHandler
 --------------------------------------------------------------------------------------
 Responsável por detectar o toque do usuário do aplicativo no botão voltar da aplicação
 --------------------------------------------------------------------------------------
-<br>
+
 
 ### Contexts
 
