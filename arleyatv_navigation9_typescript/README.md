@@ -4,19 +4,23 @@
 
 ### Hooks
 
-<img src="https://user-images.githubusercontent.com/50894850/175794455-180e319e-f2cb-4c7f-8584-2d198c966127.png">
+<img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/hooks.PNG">
 
-index.ts - arquivo que hospeda e exporta os outros arquivos da pasta Hooks, para facilitar a importação
-
-useAuth.ts - retorna as propriedades do value do AuthContext.Provider
-
-useBackHandler.ts - detectar o toque do usuário no botão voltar do aparelho
-
-useMedicine.ts - retorna as propriedades do value do MedicineContext.Provider
-
-usePayment.ts - retorna as propriedades do value do PaymentContext.Provider
-
-usePet.ts - retorna as propriedades do value do PerContext.Provider
+### index
+---------------------------------------------------------------------
+Responsável por hospedar e exportar os outros arquivos da pasta Hooks
+---------------------------------------------------------------------
+<br>
+### useAuth
+---------------------------------------------------------------------------
+Responsável por retornar as propriedades do "value" do AuthContext.Provider
+---------------------------------------------------------------------------
+<br>
+### useBackHandler
+--------------------------------------------------------------------------------------
+Responsável por detectar o toque do usuário do aplicativo no botão voltar da aplicação
+--------------------------------------------------------------------------------------
+<br>
 
 ### Contexts
 
