@@ -1,6 +1,11 @@
 ## Navigation 9 - TypeScript - Pet
 
+
+-------------------------------------------------------------------------------------------------------------
+
 ### Aplicativo para controlar os gastos de medicamentos de animais em typescript.
+
+-------------------------------------------------------------------------------------------------------------
 
 ### Hooks
 
@@ -19,7 +24,6 @@ Responsável por retornar as propriedades do "value" do AuthContext.Provider
 ### useBackHandler
 
 Responsável por detectar o toque do usuário do aplicativo no botão voltar da aplicação
-
 
 
 ### Contexts
@@ -53,28 +57,53 @@ Contém os códigos funcionais das funções da página de listagem de pets
 -------------------------------------------------------------------------------------------------------------
 
 
+-------------------------------------------------------------------------------------------------------------
+
 ### Tela Inicial
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telainicial.PNG">
+
+
+-------------------------------------------------------------------------------------------------------------
+
 
 ### Tela Cadastro
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telacadastro.PNG">
 
+
+-------------------------------------------------------------------------------------------------------------
+
+
 ### Tela Login
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telalogin.PNG">
+
+
+-------------------------------------------------------------------------------------------------------------
+
 
 ### Tela de Listagem de Pets
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telalistagempets.PNG">
 
+
+-------------------------------------------------------------------------------------------------------------
+
+
 ### Tela de Listagem de Gastos
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telagastos.PNG">
 
+
+-------------------------------------------------------------------------------------------------------------
+
+
 ### Tela de Listagem de Medicamentos
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telademedicacoes.PNG">
+
+
+-------------------------------------------------------------------------------------------------------------
 
 
