@@ -46,7 +46,12 @@ Contém os códigos funcionais das funções da página de listagem de pagamento
 
 Contém os códigos funcionais das funções da página de listagem de pets
 
+-------------------------------------------------------------------------------------------------------------
+
 ### Funcionalidades do Aplicativo
+
+-------------------------------------------------------------------------------------------------------------
+
 
 ### Tela Inicial
 
