@@ -57,8 +57,6 @@ Contém os códigos funcionais das funções da página de listagem de pets
 -------------------------------------------------------------------------------------------------------------
 
 
--------------------------------------------------------------------------------------------------------------
-
 ### Tela Inicial
 
 <img src="https://github.com/elias31072002/arleyatv/blob/main/imagens/telainicial.PNG">
